@@ -1,11 +1,39 @@
-<<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tailwind</title>
-</head>
-<body>
-  hello that shit
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-zinc-50 text-zinc-800">
+    <nav class="px-6 py-4">
+      <ul class="flex gap-10 text-sm justify-end">
+        <li>
+          <a href="#" class="text-zinc-800 hover:underline focus:underline"
+            >Dashboard</a
+          >
+        </li>
+        <li>
+          <a href="#" class="text-zinc-800 hover:underline focus:underline"
+            >Bookmarks</a
+          >
+        </li>
+        <li>
+          <button class="text-zinc-800 hover:underline focus:underline">
+            Logout
+          </button>
+        </li>
+      </ul>
+    </nav>
+    <main class="p-8">
+      <h1 class="text-4xl font-bold text-amber-600">BIT 342</h1>
+      <p class="mt-1 text-zinc-500">Discover roles worth your skills.</p>
+      <input
+        type="text"
+        placeholder="Search for roles, companies and type"
+        class="w-full border border-zinc-300 rounded-md px-5 py-2 mt-6 focus:outline-none focus:ring-2 focus:ring-amber-500"
+      />
+    </main>
+  </body>
 </html>
