@@ -5,7 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tailwind</title>
     <link rel="stylesheet" href="style.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
+
   <body class="bg-zinc-50 text-zinc-800">
     <nav class="px-6 py-4">
       <ul class="flex gap-10 text-sm justify-end">
@@ -26,9 +31,11 @@
         </li>
       </ul>
     </nav>
+
     <main class="p-8">
       <h1 class="text-4xl font-bold text-amber-600">BIT 342</h1>
       <p class="mt-1 text-zinc-500">Discover roles worth your skills.</p>
+
       <input
         type="text"
         placeholder="Search for roles, companies and type"
@@ -36,45 +43,71 @@
       />
 
       <div class="mt-8 space-y-4">
+        <!-- ======================= -->
+        <!--     JOB CARD COMPLETA   -->
+        <!-- ======================= -->
         <div
-          class="bg-white p-6 rounded-lg shadow-xs border border-zinc-200 antialiased"
+          x-data="{ 
+            showDetails: false,
+            bookmarked: false,
+            showToast: false,
+            message: ''
+          }"
+          class="p-6 bg-white rounded-lg shadow-xs border border-zinc-200 relative"
         >
+          <!-- Summary / Header -->
           <div class="flex justify-between items-center">
             <div>
-              <p class="text-amber-600 text-sm">Remote · Part-Time</p>
-              <p class="font-semibold text-xl mt-2">Full Stack Developer</p>
+              <h3 class="font-semibold text-xl">Full Stack Developer</h3>
               <p class="text-zinc-600 text-sm mt-1">
-                Short company description or location here
+                Company • Remote • Part-Time
               </p>
             </div>
 
-            <div class="flex items-center">
-              <button class="text-zinc-400 p-2">
-                <!-- Heroicon star (outline) -->
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.946a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.286 3.946c.3.921-.755 1.688-1.539 1.118l-3.37-2.448a1 1 0 00-1.175 0l-3.37 2.448c-.784.57-1.839-.197-1.539-1.118l1.286-3.946a1 1 0 00-.364-1.118L2.012 9.373c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.946z"
-                  />
+            <div class="flex items-center gap-3">
+              <!-- BOOKMARK BUTTON -->
+              <button
+                @click="
+                  bookmarked = !bookmarked;
+                  message = bookmarked ? 'Added to bookmarks' : 'Removed from bookmarks';
+                  showToast = true;
+                  setTimeout(() => showToast = false, 3000);
+                "
+                :class="bookmarked ? 'text-amber-500' : 'text-zinc-300'"
+                class="hover:text-amber-600 p-2 rounded hover:bg-zinc-100 cursor-pointer"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M5 2a2 2 0 00-2 2v14l7-4 7 4V4a2 2 0 00-2-2H5z" />
                 </svg>
               </button>
 
+              <!-- DETAILS BUTTON -->
               <button
-                class="bg-amber-600 px-4 py-1 text-white text-sm rounded-md ml-2"
+                @click="showDetails = !showDetails"
+                class="bg-amber-600 px-4 py-1 text-white text-sm rounded-md"
               >
-                View Details
+                <span x-show="!showDetails">View Details</span>
+                <span x-show="showDetails">Hide</span>
               </button>
             </div>
           </div>
+
+          <!-- Details -->
+          <div x-show="showDetails" x-transition class="mt-2 text-xs">
+            <p>Here are the job requirements and other details...</p>
+          </div>
+
+          <!-- TOAST -->
+          <div
+            x-show="showToast"
+            x-cloak
+            x-transition
+            class="fixed bottom-5 right-5 bg-green-100 border border-green-200 text-green-800 text-sm px-3 py-1 rounded shadow"
+          >
+            <span x-text="message"></span>
+          </div>
         </div>
+        <!-- END JOB CARD -->
       </div>
     </main>
   </body>

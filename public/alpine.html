@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alpine JS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body>
+    <div x-data="{ show: false }">
+      <button @click="show = !show" class="px-3 py-1 bg-zinc-100 rounded">
+        Toggle
+      </button>
+
+      <p x-show="show" class="mt-2">
+        This paragraph is shown when show is true.
+      </p>
+    </div>
+    <div x-data="{ name: '' }">
+      <input
+        x-model="name"
+        type="text"
+        placeholder="Type your full name"
+        class="border px-3 py-2"
+      />
+      <p class="mt-2">You typed: <span x-text="name"></span></p>
+    </div>
+
+    <div x-data="{ name: '' }">
+      <input
+        x-model="name"
+        type="text"
+        placeholder="Your full name"
+        class="border px-3 py-2 rounded"
+      />
+
+      <p
+        :class="name.length > 0 ? 'hidden' : 'block'"
+        class="mt-2 text-sm text-red-500"
+      >
+        Name is required.
+      </p>
+    </div>
+  </body>
+</html>
