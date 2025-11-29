@@ -1,0 +1,6 @@
+1. Completar tutorial en laracast tall-dev
+2. Crearle pruebas unitarias con pest (buscar tutorial y ver que partes crearle)
+3. Con python crear la api que obtenga con un scrapper lo datos de los trabajos a los cuales apuntar
+4. Crear servicio que permita llenar la bd todo los dias con los nuevos trabajos obtenidos
+5. Pruebas unitarias a nuevo sistema
+6. Documentacion y publicar dicho proyecto
